@@ -11,5 +11,12 @@
   "license": "MIT",
   "bin": {
     "tog": "./index.js"
+  },
+  "dependencies": {
+    "eventsource": "^1.0.7",
+    "opn": "^6.0.0",
+    "signale": "^1.4.0",
+    "uuid": "^3.3.2",
+    "yargs": "^13.2.4"
   }
 }
