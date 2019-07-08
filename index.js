@@ -19,6 +19,17 @@ const argv = yargs
       yargs.positional('state', { description: 'flag state', choices: ['on', 'off'], implies: 'name' })
       yargs.option('namespace', { alias: 'n', required: true })
     }, require('./commands/flags'))
+  .command('exp', 'read or update experiments',
+    yargs => {
+      yargs.usage('tog exp [name]')
+      yargs.positional('name', { description: 'experiment name' })
+      yargs.option('namespace', { alias: 'n', required: true })
+      yargs.option('on', { description: 'Enable flags for the experiment' })
+      yargs.option('off', { description: 'Disable flags for the experiment' })
+      yargs.option('del', { description: 'Delete flags for the experiment' })
+      yargs.option('weight', { alias: 'w', description: 'Sets the weight for the experiment' })
+    }, require('./commands/experiments.js'))
+  .demandCommand(1, 'Choose a command')
   .argv
 
 if (!argv) {
