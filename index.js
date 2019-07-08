@@ -17,13 +17,13 @@ const argv = yargs
       yargs.usage('tog flags [name [state]]')
       yargs.positional('name', { description: 'flag name' })
       yargs.positional('state', { description: 'flag state', choices: ['on', 'off'], implies: 'name' })
-      yargs.option('namespace', { alias: 'n', required: true })
+      yargs.option('namespace', { alias: 'n' })
     }, require('./commands/flags'))
   .command(['exp', 'experiment', 'experiments'], 'read or update experiments',
     yargs => {
       yargs.usage('tog exp [name]')
       yargs.positional('name', { description: 'experiment name' })
-      yargs.option('namespace', { alias: 'n', required: true })
+      yargs.option('namespace', { alias: 'n' })
       yargs.option('on', { description: 'Enable flags for the experiment' })
       yargs.option('off', { description: 'Disable flags for the experiment' })
       yargs.option('del', { description: 'Delete flags for the experiment' })

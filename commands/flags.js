@@ -15,6 +15,11 @@ const client = () => {
 }
 
 module.exports = function flags (args) {
+  args.namespace = args.namespace || readConfig().namespace
+  if (!args.namespace) {
+    return signale.error('missing namespace')
+  }
+
   switch (args._.length) {
     case 1:
       return list(args)

@@ -3,7 +3,7 @@ const signale = require('signale')
 
 const { readConfig, saveConfig } = require('../services/config')
 
-const configKeys = ['host']
+const configKeys = ['host', 'namespace']
 
 const format = value => inspect(value, false, 1, true)
 

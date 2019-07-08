@@ -3,9 +3,12 @@ const fs = require('fs')
 const filePath = require('os').homedir() + '/.config/tog.json'
 
 class Config {
-  constructor ({ host, authToken } = {}) {
+  constructor ({ host, namespace, authToken } = {}) {
     /** @type {string} */
     this.host = host
+
+    /** @type {string} */
+    this.namespace = namespace
 
     /** @type {string} */
     this.authToken = authToken
