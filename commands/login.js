@@ -28,7 +28,7 @@ module.exports = function login (args) {
       es.onerror = e => signale.warn(e)
       es.onmessage = ({ data }) => {
         const { authToken } = JSON.parse(data)
-        saveConfig({ host, authToken })
+        saveConfig({ ...config, host, authToken })
         signale.success('Login complete')
         es.close()
       }
