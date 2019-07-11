@@ -1,13 +1,20 @@
 {
   "name": "tog-cli",
   "version": "0.1.0",
-  "description": "",
+  "description": "Tog (short for toggle) is a framework for clients and servers to converse about feature flags over Redis.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:escaletech/tog-cli.git"
+  },
+  "keywords": ["feature-toggle", "feature-flags", "feature", "toggle", "flag"],
+  "bugs": {
+    "url": "https://github.com/escaletech/tog-cli/issues"
+  },
+  "homepage": "https://github.com/escaletech/tog-cli",
   "license": "MIT",
   "bin": {
     "tog": "./index.js"
