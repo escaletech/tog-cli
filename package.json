@@ -1,6 +1,6 @@
 {
   "name": "tog-cli",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Tog (short for toggle) is a framework for clients and servers to converse about feature flags over Redis.",
   "main": "index.js",
   "scripts": {
