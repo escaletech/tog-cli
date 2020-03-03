@@ -4,7 +4,8 @@
   "description": "Tog (short for toggle) is a framework for clients and servers to converse about feature flags over Redis.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "./scripts/release.sh"
   },
   "repository": {
     "type": "git",
