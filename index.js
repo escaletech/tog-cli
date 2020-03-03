@@ -12,23 +12,30 @@ const argv = yargs
       yargs.positional('key', { description: 'configuration key to get/set' })
       yargs.positional('value', { implies: 'key', description: 'value to set' })
     }, require('./commands/config'))
-  .command(['flag', 'flags'], 'read or update flags',
+  .command('list', 'list flags',
     yargs => {
-      yargs.usage('tog flags [name [state]]')
-      yargs.positional('name', { description: 'flag name' })
-      yargs.positional('state', { description: 'flag state', choices: ['on', 'off'], implies: 'name' })
+      yargs.usage('tog list')
       yargs.option('namespace', { alias: 'n' })
-    }, require('./commands/flags'))
-  .command(['exp', 'experiment', 'experiments'], 'read or update experiments',
+    }, require('./commands/list'))
+  .command('get', 'get a flag',
     yargs => {
-      yargs.usage('tog exp [name]')
-      yargs.positional('name', { description: 'experiment name' })
+      yargs.usage('tog get <name>')
       yargs.option('namespace', { alias: 'n' })
-      yargs.option('on', { description: 'Enable flags for the experiment' })
-      yargs.option('off', { description: 'Disable flags for the experiment' })
-      yargs.option('del', { description: 'Delete flags for the experiment' })
-      yargs.option('weight', { alias: 'w', description: 'Sets the weight for the experiment' })
-    }, require('./commands/experiments.js'))
+    }, require('./commands/get'))
+  .command('set', 'create or update a flag',
+    yargs => {
+      yargs.usage('tog set <name> [options]')
+      yargs.option('off')
+      yargs.option('on')
+      yargs.option('rollout', { alias: 'r' })
+      yargs.option('description', { alias: 'd' })
+      yargs.option('namespace', { alias: 'n' })
+    }, require('./commands/set'))
+  .command('delete', 'delete a flag',
+    yargs => {
+      yargs.usage('tog delete <name>')
+      yargs.option('namespace', { alias: 'n' })
+    }, require('./commands/delete'))
   .demandCommand(1, 'Choose a command')
   .argv
 

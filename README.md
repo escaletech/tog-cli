@@ -5,7 +5,7 @@
 
 Tog (short for toggle) is a framework for clients and servers to converse about feature flags over Redis.
 
-This is the command-line tool that interacts with the [Server API](https://github.com/escaletech/tog-server) to update flags and experiments.
+This is the command-line tool that interacts with the [Server API](https://github.com/escaletech/tog-management-server) to update flags and experiments.
 
 ## Prerequisites
 
@@ -24,17 +24,38 @@ Tog command-line uses [Semantic Versioning 2](https://semver.org/spec/v2.0.0.htm
 
 ## Examples
 
-* Set a `foobar` as default namespace: `tog config namespace foobar`
+```sh
+# Set my_app as default namespace
+> tog config namespace my_app
 
-### Flags
+# List flags
+> tog list
+namespace: my_app
+┌──────────────┬─────────────┬───────────────┐
+│ name         │ description │ rollout       │
+├──────────────┼─────────────┼───────────────┤
+│ blue-button  │ -           │ - value: true │
+└──────────────┴─────────────┴───────────────┘
 
-* List flags: `tog flags`
-* Get a flag: `tog flag my-flag`
-* Enable a flag: `tog flag my-flag on`, or disable it: `tog flag my-flag off`
+# Get a flag
+> tog get blue-button
+namespace: my_app
+name: blue-button
+description: "Make the button blue"
+rollout:
+  - value: true
+    percentage: 30
+  - value: false
 
-### Experiments
+# Set a flag's description
+> tog set blue-button -d "Make the button blue"
 
-* List experiments: `tog exp`
-* Get an experiment: `tog exp my-exp`
-* Create/update an experiment `tog exp my-exp --on flag-one --on flag-two --weight 30`
-* Disable an expertiment: `tog exp my-exp --weight 0` (just set its weight to zero)
+# Set a flag's rollout
+> tog set blue-button --rollout "[{ percentage: 30, value: true }, value: false]"
+
+# Set a flag's rollout to always true
+> tog set blue-button --on
+
+# Set a flag's rollout to always false
+> tog set blue-button --off
+```
