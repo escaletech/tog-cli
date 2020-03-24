@@ -25,6 +25,8 @@ var rootCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},
+	SilenceErrors: true,
+	SilenceUsage:  true,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		if hostFlag != "" {
 			host, err := config.NormalizeHost(hostFlag)
@@ -46,15 +48,15 @@ var rootCmd = &cobra.Command{
 	DisableAutoGenTag: true,
 }
 
-func Execute(version string, cstore *config.Store) error {
+func Execute(version string, cstore *config.Store) (*cobra.Command, error) {
 	ctx, err := cstore.GetContext()
 	if err != nil {
 		fmt.Println("Error: failed to get config context:", err)
-		return err
+		return rootCmd, err
 	}
 
 	configStore = cstore
 	currentContext = ctx
 	rootCmd.Version = version
-	return rootCmd.Execute()
+	return rootCmd.ExecuteC()
 }
