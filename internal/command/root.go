@@ -3,12 +3,15 @@ package command
 import (
 	"fmt"
 
-	"github.com/escaletech/tog-cli/internal/config"
 	"github.com/spf13/cobra"
+
+	"github.com/escaletech/tog-cli/internal/client"
+	"github.com/escaletech/tog-cli/internal/config"
 )
 
 var currentContext config.Context
 var configStore *config.Store
+var togClient *client.Client
 
 var hostFlag string
 var namespaceFlag string
@@ -42,6 +45,8 @@ var rootCmd = &cobra.Command{
 		} else if currentContext.Namespace == "" {
 			currentContext.Namespace = "default"
 		}
+
+		togClient = client.New(cmd.Version, currentContext.Host, currentContext.AuthToken)
 
 		return nil
 	},
