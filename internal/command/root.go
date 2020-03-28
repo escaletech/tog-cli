@@ -12,6 +12,7 @@ import (
 var currentContext config.Context
 var configStore *config.Store
 var togClient *client.Client
+var buildDate string
 
 var hostFlag string
 var namespaceFlag string
@@ -53,7 +54,7 @@ var rootCmd = &cobra.Command{
 	DisableAutoGenTag: true,
 }
 
-func Execute(version string, cstore *config.Store) (*cobra.Command, error) {
+func Execute(cstore *config.Store) (*cobra.Command, error) {
 	ctx, err := cstore.GetContext()
 	if err != nil {
 		fmt.Println("Error: failed to get config context:", err)
@@ -62,6 +63,10 @@ func Execute(version string, cstore *config.Store) (*cobra.Command, error) {
 
 	configStore = cstore
 	currentContext = ctx
-	rootCmd.Version = version
 	return rootCmd.ExecuteC()
+}
+
+func SetMetadata(version, date string) {
+	rootCmd.Version = version
+	buildDate = date
 }
