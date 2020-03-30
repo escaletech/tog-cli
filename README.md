@@ -1,61 +1,98 @@
 # Tog CLI
 
-[![npm version](https://badge.fury.io/js/tog-cli.svg)](https://badge.fury.io/js/tog-cli)
-[![CircleCI](https://circleci.com/gh/escaletech/tog-cli/tree/master.svg?style=svg)](https://circleci.com/gh/escaletech/tog-cli/tree/master)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/escaletech/tog-cli)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/escaletech/tog-cli/continuous-integration/master)
 
 Tog (short for toggle) is a framework for clients and servers to converse about feature flags over Redis.
 
 This is the command-line tool that interacts with the [Server API](https://github.com/escaletech/tog-management-server) to update flags and experiments.
 
-## Prerequisites
 
-1. [Node.js](https://nodejs.org) >= 10.0
+## Table of contents
+
+- [Tog CLI](#tog-cli)
+  - [Table of contents](#table-of-contents)
+  - [Usage](#usage)
+  - [Installation](#installation)
+    - [macOS](#macos)
+    - [Windows (via Scoop)](#windows-via-scoop)
+    - [Linux](#linux)
+      - [Debian/Ubuntu Linux](#debianubuntu-linux)
+      - [Fedora Linux](#fedora-linux)
+      - [Centos Linux](#centos-linux)
+      - [openSUSE/SUSE Linux](#opensusesuse-linux)
+    - [Any platform, using Go](#any-platform-using-go)
+
+## Usage
+
+* `tog config`
+* `tog login`
+* `tog list`
+* `tog get <flag-name>`
+* `tog set <flag-name> [...options]`
+* `tog delete <flag-name>`
+* `tog help [<command>]`
 
 
-## Versioning
+## Installation
 
-Tog command-line uses [Semantic Versioning 2](https://semver.org/spec/v2.0.0.html).
+### macOS
 
+Install: `brew install escaletech/tog/tog`
 
-## Getting Started
+Upgrade: `brew update && brew upgrade tog`
 
-1. Install: `npm install -g tog-cli`
-2. Log in: `tog login -h <host-url>`, where `<host-url>` is the address to your deployment of [Tog Server](https://github.com/escaletech/tog-server) (e.g. `https://tog.mysite.com`)
+### Windows (via [Scoop](https://scoop.sh/))
 
-## Examples
+Install:
 
-```sh
-# Set my_app as default namespace
-> tog config namespace my_app
-
-# List flags
-> tog list
-namespace: my_app
-┌──────────────┬─────────────┬───────────────┐
-│ name         │ description │ rollout       │
-├──────────────┼─────────────┼───────────────┤
-│ blue-button  │ -           │ - value: true │
-└──────────────┴─────────────┴───────────────┘
-
-# Get a flag
-> tog get blue-button
-namespace: my_app
-name: blue-button
-description: "Make the button blue"
-rollout:
-  - value: true
-    percentage: 30
-  - value: false
-
-# Set a flag's description
-> tog set blue-button -d "Make the button blue"
-
-# Set a flag's rollout
-> tog set blue-button --rollout "[{ percentage: 30, value: true }, value: false]"
-
-# Set a flag's rollout to always true
-> tog set blue-button --on
-
-# Set a flag's rollout to always false
-> tog set blue-button --off
 ```
+scoop bucket add github-gh https://github.com/cli/scoop-gh.git
+scoop install gh
+```
+
+Upgrade: `scoop update tog`
+
+### Linux
+
+#### Debian/Ubuntu Linux
+
+Install and upgrade:
+
+1. Download the `.deb` file from the [releases page][]
+2. `sudo apt install git && sudo dpkg -i tog_*_linux_amd64.deb`  install the downloaded file
+
+#### Fedora Linux
+
+Install and upgrade:
+
+1. Download the `.rpm` file from the [releases page][]
+2. `sudo dnf install tog_*_linux_amd64.rpm` install the downloaded file
+
+#### Centos Linux
+
+Install and upgrade:
+
+1. Download the `.rpm` file from the [releases page][]
+2. `sudo yum localinstall tog_*_linux_amd64.rpm` install the downloaded file
+
+#### openSUSE/SUSE Linux
+
+Install and upgrade:
+
+1. Download the `.rpm` file from the [releases page][]
+2. `sudo zypper in tog_*_linux_amd64.rpm` install the downloaded file
+
+### Any platform, using Go
+
+1. Verify that you have Go 1.13+ installed
+    ```sh 
+    $ go version
+    go version go1.13.7
+    ```
+2. Go get
+    ```sh
+    go get -u github.com/escaletech/tog-cli
+    ```
+
+[releases page]: https://github.com/escaletech/tog-cli/releases/latest
