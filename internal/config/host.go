@@ -7,7 +7,7 @@ import (
 )
 
 func NormalizeHost(host string) (string, error) {
-	if !strings.HasPrefix("https://", host) && !strings.HasPrefix("http://", host) {
+	if !strings.HasPrefix(host, "https://") && !strings.HasPrefix(host, "http://") {
 		host = "https://" + host
 	}
 
