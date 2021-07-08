@@ -42,14 +42,12 @@ archives:
 
 brews:
   - name: tog
-    ids: [nix]
-    github:
+    tap:
       owner: escaletech
-      name: homebrew-tog
-    skip_upload: auto
+      name: homebrew-tap
+    folder: Formula
     description: Tog CLI
     homepage: https://github.com/escaletech/tog-cli
-    folder: Formula
     test: |
       help_text = shell_output("#{bin}/tog --help")
       assert_includes help_text, "Usage:"
@@ -66,10 +64,10 @@ nfpms:
 scoop:
   bucket:
     owner: escaletech
-    name: scoop-tog
+    name: scoop-escale
   commit_author:
-    name: rodrigo.dumont
-    email: rodrigo.dumont@escale.com.br
+    name: Aline Freitas
+    email: aline.freitas@escale.com.br
   homepage: https://github.com/escaletech/tog-cli
   skip_upload: auto
   description: Tog CLI
