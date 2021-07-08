@@ -42,14 +42,12 @@ archives:
 
 brews:
   - name: tog
-    ids: [nix]
-    github:
+    tap:
       owner: escaletech
-      name: homebrew-tog
-    skip_upload: auto
+      name: homebrew-tap
+    folder: Formula
     description: Tog CLI
     homepage: https://github.com/escaletech/tog-cli
-    folder: Formula
     test: |
       help_text = shell_output("#{bin}/tog --help")
       assert_includes help_text, "Usage:"
